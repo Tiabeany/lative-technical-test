@@ -1,6 +1,8 @@
+using System;
 using System.Data.SqlClient;
 using Dapper;
-namespace CleanCodeApp
+
+namespace EmployeeDiscount
 {
     public class Class1
     {
