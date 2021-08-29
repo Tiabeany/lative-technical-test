@@ -2,7 +2,7 @@ using System;
 using System.Data.SqlClient;
 using Dapper;
 
-namespace EmployeeDiscount
+namespace EmployeeDiscount.UI
 {
     public class Class1
     {

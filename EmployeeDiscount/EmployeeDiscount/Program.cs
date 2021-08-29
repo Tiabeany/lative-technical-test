@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EmployeeDiscount
+namespace EmployeeDiscount.UI
 {
     class Program
     {
