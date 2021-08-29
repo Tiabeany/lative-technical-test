@@ -1,4 +1,8 @@
-﻿using System;
+﻿using EmployeeDiscount.Application.Services;
+using EmployeeDiscount.Infrastructure;
+using EmployeeDiscount.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace EmployeeDiscount.UI
 {
@@ -10,9 +14,17 @@ namespace EmployeeDiscount.UI
             var amount = decimal.Parse(Console.ReadLine());
 
             Console.WriteLine("Insert Employee Id:");
-            var employeedId = int.Parse(Console.ReadLine());
+            var employeedId = int.Parse(Console.ReadLine()); 
+            
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionsBuilder.UseSqlServer("Data Source=SW-GBHA-TISL281;Initial Catalog=TWDC_CustDis;User Id=dev;Password=dev;");
 
-            var discount = new Class1().Calc(amount, employeedId);
+            var appDbContext = new ApplicationDbContext(optionsBuilder.Options);
+
+            var employeeService = new EmployeeService(new EmployeeRepository(appDbContext));
+
+            var discount = employeeService.GetEmployeeDiscoutByAmount(amount, employeedId);
+
             Console.WriteLine($"Employee discounts should be: {discount}");
         }
     }
