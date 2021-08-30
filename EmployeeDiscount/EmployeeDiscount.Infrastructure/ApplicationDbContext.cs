@@ -6,11 +6,15 @@ namespace EmployeeDiscount.Infrastructure
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<EmployeeType> EmployeeTypes { get; set; }
+        public DbSet<EmployeeTypeDiscountRule> EmployeeTypeDiscounts { get; set; }
 
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            Seed.SeedData(this);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
         }
     }
 }

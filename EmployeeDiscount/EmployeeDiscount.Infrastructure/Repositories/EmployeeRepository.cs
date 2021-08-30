@@ -1,5 +1,6 @@
 ﻿using EmployeeDiscount.Domain.Entities;
 using EmployeeDiscount.Domain.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,7 +22,8 @@ namespace EmployeeDiscount.Infrastructure.Repositories
 
         public Employee GetEmployeeByID(int EmployeeId)
         {
-            return _context.Employees.FirstOrDefault(e => e.Id == EmployeeId);
+            var employee = _context.Employees.FirstOrDefault(e => e.Id == EmployeeId);
+            return employee;
         }
 
         public IEnumerable<Employee> GetEmployees()

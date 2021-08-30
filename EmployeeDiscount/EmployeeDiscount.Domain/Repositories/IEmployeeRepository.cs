@@ -1,4 +1,5 @@
 ﻿using EmployeeDiscount.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace EmployeeDiscount.Domain.Repositories

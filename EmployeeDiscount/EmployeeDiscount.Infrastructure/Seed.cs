@@ -1,4 +1,5 @@
 ﻿using EmployeeDiscount.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,13 +11,16 @@ namespace EmployeeDiscount.Infrastructure
         {
             if (context.Employees.Any()) return;
 
-            var employees = new List<Employee>
+            var employees = new List<Employee>();
+
+            for (int i = 0; i < 20; i++)
             {
-                new Employee(1, new EmployeeType(1), null),
-                new Employee(2, new EmployeeType(2), null),
-                new Employee(3, new EmployeeType(3), null),
-                new Employee(4, new EmployeeType(4), null),
-            };
+                var employeeId = i + 1;
+                var employeeTypeNumber = i % 4;
+                var yearsBackForStartDate = -(i % 8);
+                var newEmployee = new Employee(employeeId, employeeTypeNumber, new EmployeeType(employeeTypeNumber), DateTime.Now.AddYears(yearsBackForStartDate), null);
+                employees.Add(newEmployee);
+            }
 
             context.Employees.AddRange(employees);
             context.SaveChanges();
